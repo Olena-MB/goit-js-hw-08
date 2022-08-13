@@ -23,10 +23,10 @@ function onFormInput(e) {
 initForm();
   
 function initForm() {
-  let persistedFilters = localStorage.getItem(LOCALSTORAGE_KEY);
-  if (persistedFilters) {
-    persistedFilters = JSON.parse(persistedFilters);
-    Object.entries(persistedFilters).forEach(([name, value]) => {
+  let perFilters = localStorage.getItem(LOCALSTORAGE_KEY);
+  if (perFilters) {
+    perFilters = JSON.parse(perFilters);
+    Object.entries(perFilters).forEach(([name, value]) => {
         feedbackForm.elements[name].value = value;
     });
   }
