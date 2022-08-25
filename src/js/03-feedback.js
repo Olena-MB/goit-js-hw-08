@@ -8,7 +8,6 @@ const feedbackForm = document.querySelector('.feedback-form');
 //Зроби так, щоб сховище оновлювалось не частіше, ніж раз на 500 мілісекунд
 //1. Відстежуй на формі подію input, і щоразу записуй у локальне сховище об'єкт 
 //з полями email і message, у яких зберігай поточні значення полів форми. 
-
 feedbackForm.addEventListener('input', throttle(onFormInput, 500));
 
 function onFormInput(e) {
@@ -39,8 +38,19 @@ function initForm() {
 feedbackForm.addEventListener('submit', onFormSubmit);
 function onFormSubmit(e) {
     e.preventDefault();
-    const formData = new FormData(feedbackForm);
-    formData.forEach((value, name) => console.log(value, name));
-    e.currentTarget.reset();
+    const email = e.target.elements.email.value;
+  const message = e.target.elements.message.value;
+
+  if (email === '' || message === '') {
+    console.log("Please entered data in all fields");
+  } else {
     localStorage.removeItem(LOCALSTORAGE_KEY);
+    console.log({ email, message });
   }
+  e.currentTarget.reset();
+}
+    // const formData = new FormData(feedbackForm);
+    // formData.forEach((value, name) => console.log(value, name));
+    // e.currentTarget.reset();
+    // localStorage.removeItem(LOCALSTORAGE_KEY);
+  
